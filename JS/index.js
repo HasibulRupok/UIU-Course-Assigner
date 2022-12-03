@@ -39,7 +39,7 @@ function dragDrop(ev) {
     const id = ev.target.id;
     const courseText = document.getElementById(data).innerText;
     const infos = courseText.split(" ### ");
-    if (infos[3] === 'T' || infos[3] === 'W') {
+    if (infos[3] === 'T' || infos[3] === 'W') {  //edit here
         // its theory course 
         handleTheory(infos, id, myCourseData);
     }
