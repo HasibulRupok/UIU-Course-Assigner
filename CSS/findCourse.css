@@ -1,0 +1,85 @@
+:root {
+    --uiuOrange: #E9821E;
+    --uiuLight: #fc8c1d;
+    --tableBorder: rgba(119, 119, 119, 0.829);
+}
+
+/* global */
+
+.topTogo {
+    color: white;
+}
+
+#fullArea {
+    margin-top: 1rem;
+}
+
+/* button container  */
+
+#buttonContainer {
+    width: 15%;
+    border-right: 1px solid rgba(0, 0, 0, 0.44);
+    height: auto;
+
+}
+
+#buttonContainer div {
+    width: fit-content;
+    margin: 0 auto !important;
+}
+
+#buttonContainer button {
+    background-color: var(--uiuOrange);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    margin: 8px auto;
+}
+
+#buttonContainer h3 {
+    text-decoration: underline;
+}
+
+#buttonContainer button:hover {
+    background-color: var(--uiuLight);
+}
+
+#showArea {
+    width: 75%;
+    margin-left: 5%;
+    height: auto;
+}
+
+/* search div  */
+#searchDiv {
+    margin-left: 15%;
+}
+
+/* table  */
+#searchText {
+    width: 75%;
+    padding: 8px 13px;
+    border: 2px solid var(--uiuOrange);
+    border-radius: 22px;
+}
+
+thead {
+    border-radius: 15px !important;
+}
+
+#searchBtn {
+    background-color: rgb(0, 166, 255);
+    padding: 8px 18px;
+    border-radius: 20px;
+    color: white;
+    margin-left: -10.45%;
+    transition: 0.2s;
+}
+
+#searchBtn:hover {
+    background-color: rgba(0, 166, 255, 0.84);
+}
+
+.hoverLink:hover {
+    text-decoration: underline;
+}

@@ -29,6 +29,13 @@
 .homeBtn:hover{
     background-color: var(--uiuLight);
 }
+#exportBtn{
+    margin-left: 5px;
+    background-color: var(--uiuOrange) !important;
+}
+#exportBtn:hover{
+    background-color: var(--uiuLight) !important;
+}
 
 /* table */
 .w20{
@@ -50,6 +57,10 @@
     max-height: 80vh;
     word-wrap: break-word;
     border: 1px solid var(--tableBorder);
+}
+#courseListContainer{
+    position: fixed !important;
+    right: 4%;
 }
 .table{
     width: 100%;
@@ -138,4 +149,15 @@ td{
 }
 #fileUpload{
     margin-left: 46%;
+}
+
+/*navbar*/
+#navBar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#buttonSection{
+    margin-top: 11.5vh !important;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="demoId">
+            <p>
+                Lorem, ipsum dolor.
+            </p>
+        </div>
+
+        <table>
+            <thead>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+            </thead>
+            <div id="<?php echo 'sat-'.$rowCounterId; ?>">
+                <td class="w20" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
+                    id="<?php echo $fac['serial'].'-0'; ?>"></td>
+            </div>
+
+            <div id="<?php echo 'sun-'.$rowCounterId; ?>">
+                <td class="w20" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
+                    id="<?php echo $fac['serial'].'-1'; ?>"></td>
+            </div>
+
+            <div id="<?php echo 'tue-'.$rowCounterId; ?>">
+                <td class="w20" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
+                    id="<?php echo $fac['serial'].'-2'; ?>"></td>
+            </div>
+
+            <div id="<?php echo 'wed-'.$rowCounterId; ?>">
+                <td class="w20" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
+                    id="<?php echo $fac['serial'].'-3'; ?>"></td>
+            </div>
+        </table>
+
+
+        <script>
+            console.log(document.getElementById("demoId").innerText)
+        </script>
+    </body>
+
+</html>

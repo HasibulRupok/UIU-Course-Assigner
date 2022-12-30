@@ -10,7 +10,7 @@ const errorBtn = () => {
 }
 
 const giveAllert = (message) => {
-    console.log(message);
+    // console.log(message);
     document.getElementById("ErrorStatus").innerText = message;
     document.getElementById("allartDiv").style.display = "block";
 }
@@ -35,16 +35,18 @@ function dragDrop(ev) {
     const myCourseData = document.getElementById(ev.target.id).innerText;
     ev.target.append(document.getElementById(data));
 
-
     const id = ev.target.id;
     const courseText = document.getElementById(data).innerText;
     const infos = courseText.split(" ### ");
+    
     if (infos[3] === 'T' || infos[3] === 'W') {  //edit here
-        // its theory course 
+        // its theory course
+        console.log("T");
         handleTheory(infos, id, myCourseData);
     }
     else {
-        // its lab course 
+        // its lab course
+        console.log("L");
         handelLab(infos, id, myCourseData);
     }
 }
@@ -153,6 +155,12 @@ function handleTheory(courseData, id, myCourse) {
 function handelLab(courseData, id, myCourse) {
     const idParts = id.split("-");
 
+    // FYDP CSE 4000B without section || Time 
+    if(courseData[2].includes("### 00:00:PM - 00:00:PM") ){
+        // console.log("FYDP");
+        return;
+    }
+
     let sisterDay = '';
     if (idParts[1] == 0) {
         // checking placed in wrong day or not 
@@ -171,14 +179,14 @@ function handelLab(courseData, id, myCourse) {
         sisterDay = document.getElementById(idParts[0] + '-3').innerText;
     }
     else if (idParts[1] == 2) {
-        if (courseData[2] !== "Sat") {
+        if (courseData[2] !== "T") {
             giveAllert("Droped in wrong day");
             return;
         }
         sisterDay = document.getElementById(idParts[0] + '-0').innerText;
     }
     else if (idParts[1] == 3) {
-        if (courseData[2] !== "Sun") {
+        if (courseData[2] !== "W") {
             giveAllert("Droped in wrong day");
             return;
         }

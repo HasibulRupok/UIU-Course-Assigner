@@ -1,12 +1,20 @@
 <?php
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if($_FILES['courseList']['tmp_name'] != "" && $_FILES['facultyList']['tmp_name'] != "" ){
-        $courseList = $_FILES['courseList']['tmp_name'];
-        $facultyList = $_FILES['facultyList']['tmp_name'];
 
-//        readupload($courseList, "classroutine");
-        readupload($facultyList, "employee ");
+    if($_FILES['courseList']['tmp_name'] != "" || $_FILES['facultyList']['tmp_name'] != "" || $_FILES['oldTrimesterList']['tmp_name'] != ""){
+        if ($_FILES['courseList']['tmp_name'] != ""){
+            $courseList = $_FILES['courseList']['tmp_name'];
+            readUpload($courseList, "class2");
+        }
+        elseif ($_FILES['facultyList']['tmp_name'] != ""){
+            $facultyList = $_FILES['facultyList']['tmp_name'];
+            readUpload($facultyList, "emp");
+        }
+        elseif ($_FILES['oldTrimesterList']['tmp_name'] != ""){
+            $oldList = $_FILES['oldTrimesterList']['tmp_name'];
+            readUpload($oldList, "old_trimester_data");
+        }
 
     }
     // echo "<pre>";
@@ -14,37 +22,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 // echo "</pre>";
 }
 
-function readupload($filePath, $tableName){
-require_once "xlsx.php";
-$excel=SimpleXLSX::parse($filePath);
-//    /** @var $pdo PDO */
-$pdo = require_once "databaseConnector.php";
+function readUpload($filePath, $tableName){
+    require_once "xlsx.php";
+    $excel=SimpleXLSX::parse($filePath);
+    //    /** @var $pdo PDO */
+    $pdo = require_once "databaseConnector.php";
 
-$x = 1;
-$rows = $excel->rows();
-unset($rows[0]);
+    $x = 1;
+    $rows = $excel->rows();
+    unset($rows[0]);
 
-$sql = "INSERT INTO ".$tableName." VALUES (DEFAULT,";
-// finally for course-->>  $sql = "INSERT INTO classroutine VALUES (DEFAULT, '$row[0]', '$row[1]', '$row[2]', '$row[3]', $row[4], $row[5], $row[6], '$row[7]', '$row[8]', '$row[9]', '$row[10]', '$row[11]', '$row[12]', '$row[13]', '$row[14]', '$row[15]', '$row[16]', '$row[17]', '$row[18]', '$row[19]', '$row[20]', '$row[21]', '$row[22]', '$row[23]', '$row[24]', '$row[25]', '$row[26]', '$row[27]', '$row[28]', '$row[29]', '$row[30]', '$row[31]', '$row[32]', '$row[33]', '$row[34]' )";
+    $sql = "INSERT INTO ".$tableName." VALUES (DEFAULT,";
+    // finally for course-->>  $sql = "INSERT INTO classroutine VALUES (DEFAULT, '$row[0]', '$row[1]', '$row[2]', '$row[3]', $row[4], $row[5], $row[6], '$row[7]', '$row[8]', '$row[9]', '$row[10]', '$row[11]', '$row[12]', '$row[13]', '$row[14]', '$row[15]', '$row[16]', '$row[17]', '$row[18]', '$row[19]', '$row[20]', '$row[21]', '$row[22]', '$row[23]', '$row[24]', '$row[25]', '$row[26]', '$row[27]', '$row[28]', '$row[29]', '$row[30]', '$row[31]', '$row[32]', '$row[33]', '$row[34]' )";
 
-foreach($rows as $row){
-$dataCounter = count($row);
+    foreach($rows as $row){
+        $dataCounter = count($row);
 
-foreach($row as $data){
-if($x == $dataCounter) $sql = $sql." '$data' ";
-else $sql = $sql." '$data',";
-$x += 1;
+        foreach($row as $data){
+            if($x == $dataCounter) $sql = $sql." '$data' ";
+            else $sql = $sql." '$data',";
+            $x += 1;
+        }
+
+        $sql = $sql." )";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $sql = "INSERT INTO ".$tableName." VALUES (DEFAULT,";
+        $x = 1;
+
+    }
+    $pdo = null;
+    $statement = null;
 }
 
-$sql = $sql." )";
-$statement = $pdo->prepare($sql);
-$statement->execute();
-$sql = "INSERT INTO ".$tableName." VALUES (DEFAULT,";
-$x = 1;
-
-}
-
-}
 
 ?>
 
@@ -64,7 +74,7 @@ $x = 1;
         <!-- navbar -->
         <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
             <div class="container flex flex-wrap justify-between items-center mx-auto">
-                <a href="#" class="flex items-center">
+                <a href="index.php" class="flex items-center">
                     <img src="uiu.png" class="mr-3 h-6 sm:h-9" alt="UIU Course Assigner">
                     <span class="self-center text-xl font-bold whitespace-nowrap topTogo">Course
                         Assigner<span>
@@ -102,6 +112,10 @@ $x = 1;
                     <span>Choose Faculty List</span>
                     <input type="file" name="facultyList" id="" class="inputFile"
                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <br>
+                    <span>Old Trimester Data</span>
+                    <input type="file" name="oldTrimesterList" id="" class="inputFile"
+                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <br>
                     <button class="btnDesign" id="fileUpload">Upload</button>
                 </form>
