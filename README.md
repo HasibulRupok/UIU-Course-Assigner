@@ -11,3 +11,8 @@ Once the routine is finalized, users have the option to save it to a database fo
 Moreover, the application offers a search functionality that allows users to retrieve information about previous course routines. If users upload previous course routine data, they can search for specific courses and find details about the faculty members who taught those courses in previous semesters.
 
 In summary, the "Course Assigner" streamlines the process of creating course routines by providing a `user-friendly interface`, `automated conflict detection`, `database storage`, and `Excel export` capabilities. It eliminates manual effort, reduces the chances of errors, and offers efficient retrieval of historical course assignment information.
+
+## License
+
+This project is licensed under the [Creative Commons Attribution License](https://creativecommons.org/licenses/by/4.0/). You are free to download and use this application, but you must provide appropriate credit to the original authors.
+
